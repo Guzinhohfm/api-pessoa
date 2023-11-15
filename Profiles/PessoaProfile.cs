@@ -4,9 +4,9 @@ using AutoMapper;
 
 namespace api_pessoa.profiles;
 
-public class pessoaprofile : Profile
+public class PessoaProfile : Profile
 {
-    public pessoaprofile()
+    public PessoaProfile()
     {
         CreateMap<CreatePessoaDto, Pessoa>();
     }

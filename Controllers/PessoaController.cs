@@ -15,14 +15,12 @@ namespace api_pessoa.Controllers
         private AppDbContext _context;
         private IMapper _mapper;
 
-        public PessoaController(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
+        
 
-        public PessoaController(AppDbContext context)
+        public PessoaController(AppDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
 
@@ -58,6 +56,7 @@ namespace api_pessoa.Controllers
         public IEnumerable<Pessoa> ListarPessoas([FromQuery] int take = 10)
         {
             return _context.pessoas.Take(take);
+
         }
 
         /// <summary>
