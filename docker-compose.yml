@@ -1,13 +1,10 @@
-version: '3.4'
-
-networks:
-  dev:
-    driver: bridge   
+version: '2.0'
 
 services:
   api-pessoa:
     depends_on: 
-     - "app_db"
+      app_db:
+        condition: service_healthy
     ports:
       - "8083:80"
     build:
@@ -20,8 +17,13 @@ services:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: app_db
     environment:
-      - SA_PASSWORD=senhaforte@123
+      - MSSQL_SA_PASSWORD=senhaforte@123
       - ACCEPT_EULA=Y
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-Psenhaforte@123", "-Q", "select 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 55
     ports:
      - "1450:1433"
     volumes:
