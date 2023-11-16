@@ -7,6 +7,6 @@
 
 ## Back-end
 - ASP.Net Core
-- .Net Framework
+- EntityFramework
 - C#
 - Docker
